@@ -1,10 +1,17 @@
-name: CI/CD Pipeline
+name: Manual Deploy
 
 on:
-  push:
-    branches: [ "deploy-dev" ]
-
   workflow_dispatch:
+    inputs:
+      service:
+        description: 'Select the service to deploy'
+        required: true
+        default: 'auth'
+        type: choice
+        options:
+          - auth
+          - product
+          - transaction
 
 jobs:
   build-docker-dev:
